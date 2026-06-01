@@ -9,39 +9,18 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 :root {
-  --bg: #0c0c0c;
-  --bg1: #131313;
-  --bg2: #181818;
-  --bg3: #1f1f1f;
-  --border: #242424;
-  --border2: #2e2e2e;
-  --text: #e8e8e8;
-  --text2: #777;
-  --text3: #3a3a3a;
-  --accent: #e8650a;
-  --accent-dim: rgba(232,101,10,0.08);
-  --accent-border: rgba(232,101,10,0.2);
-  --red: #e05252;
-  --red-dim: rgba(224,82,82,0.08);
-  --green: #4caf7d;
-  --green-dim: rgba(76,175,125,0.08);
-  --blue: #5b8dee;
-  --blue-dim: rgba(91,141,238,0.08);
-  --blue-border: rgba(91,141,238,0.2);
-  --font: 'DM Sans', sans-serif;
-  --mono: 'DM Mono', monospace;
-  --radius: 10px;
+  --bg: #0c0c0c; --bg1: #131313; --bg2: #181818; --bg3: #1f1f1f;
+  --border: #242424; --border2: #2e2e2e;
+  --text: #e8e8e8; --text2: #777; --text3: #3a3a3a;
+  --accent: #e8650a; --accent-dim: rgba(232,101,10,0.08); --accent-border: rgba(232,101,10,0.2);
+  --red: #e05252; --red-dim: rgba(224,82,82,0.08);
+  --green: #4caf7d; --green-dim: rgba(76,175,125,0.08);
+  --blue: #5b8dee; --blue-dim: rgba(91,141,238,0.08); --blue-border: rgba(91,141,238,0.2);
+  --font: 'DM Sans', sans-serif; --mono: 'DM Mono', monospace; --radius: 10px;
 }
-
 html, body { background: var(--bg); color: var(--text); font-family: var(--font); min-height: 100vh; font-size: 14px; }
-
-.topbar {
-  height: 52px; background: var(--bg1); border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 24px; position: sticky; top: 0; z-index: 50;
-}
+.topbar { height: 52px; background: var(--bg1); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 24px; position: sticky; top: 0; z-index: 50; }
 .logo { display: flex; align-items: center; gap: 9px; }
 .logo-mark { width: 28px; height: 28px; background: var(--accent); border-radius: 7px; display: flex; align-items: center; justify-content: center; }
 .logo-name { font-size: 14px; font-weight: 600; color: #fff; letter-spacing: -0.2px; }
@@ -54,14 +33,12 @@ html, body { background: var(--bg); color: var(--text); font-family: var(--font)
 .btn-ghost:hover { border-color: #444; color: var(--text); }
 .btn-primary { background: var(--accent); border: none; color: #fff; border-radius: var(--radius); padding: 7px 16px; font-size: 13px; font-weight: 500; font-family: var(--font); cursor: pointer; display: flex; align-items: center; gap: 6px; transition: background 0.15s; }
 .btn-primary:hover { background: #d45a08; }
-
 .banner { margin: 16px 24px 0; background: var(--bg1); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
 .banner-left { display: flex; align-items: center; gap: 12px; }
 .banner-icon { width: 32px; height: 32px; background: var(--accent-dim); border: 1px solid var(--accent-border); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .banner-title { font-size: 13px; font-weight: 500; color: var(--text); }
 .banner-sub { font-size: 11px; color: var(--text2); margin-top: 1px; }
 .banner-number { font-size: 18px; font-weight: 600; color: var(--accent); font-family: var(--mono); letter-spacing: 0.5px; flex-shrink: 0; }
-
 .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; padding: 12px 24px 0; }
 .stat { background: var(--bg1); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
 .stat-label { font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.8px; font-family: var(--mono); margin-bottom: 8px; }
@@ -71,9 +48,7 @@ html, body { background: var(--bg); color: var(--text); font-family: var(--font)
 .stat.red .stat-val { color: var(--red); }
 .stat.blue .stat-val { color: var(--blue); }
 .stat.green .stat-val { color: var(--green); }
-
 .main { display: grid; grid-template-columns: 1fr 260px; gap: 10px; padding: 12px 24px 24px; }
-
 .panel { background: var(--bg1); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
 .panel-head { padding: 12px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
 .panel-title { font-size: 11px; font-weight: 500; color: var(--text2); text-transform: uppercase; letter-spacing: 0.8px; font-family: var(--mono); }
@@ -81,12 +56,11 @@ html, body { background: var(--bg); color: var(--text); font-family: var(--font)
 .filter { background: transparent; border: 1px solid transparent; color: var(--text3); border-radius: 6px; padding: 3px 9px; font-size: 11px; font-family: var(--font); cursor: pointer; transition: all 0.12s; }
 .filter:hover { color: var(--text2); }
 .filter.active { background: var(--bg3); border-color: var(--border2); color: var(--text); }
-
 .job { padding: 13px 16px; border-bottom: 1px solid #0f0f0f; display: grid; grid-template-columns: 2px 1fr auto; gap: 12px; align-items: start; transition: background 0.1s; }
 .job:last-child { border-bottom: none; }
 .job:hover { background: var(--bg2); }
 .job.new-in { animation: slideIn 0.4s ease; }
-@keyframes slideIn { from { opacity:0; transform:translateY(-6px); background:rgba(232,101,10,0.06); } to { opacity:1; transform:translateY(0); background:transparent; } }
+@keyframes slideIn { from{opacity:0;transform:translateY(-6px);background:rgba(232,101,10,0.06)} to{opacity:1;transform:translateY(0);background:transparent} }
 .job-bar { align-self: stretch; border-radius: 2px; }
 .job-bar.emergency { background: var(--red); }
 .job-bar.normal { background: var(--accent); }
@@ -109,7 +83,6 @@ html, body { background: var(--bg); color: var(--text); font-family: var(--font)
 .act.dispatch { background: var(--blue-dim); color: var(--blue); border: 1px solid var(--blue-border); }
 .act.resolve { background: var(--green-dim); color: var(--green); border: 1px solid rgba(76,175,125,0.2); }
 .empty { padding: 40px; text-align: center; color: var(--text3); font-size: 12px; }
-
 .sidebar { display: flex; flex-direction: column; gap: 10px; }
 .crew-row { padding: 10px 14px; border-bottom: 1px solid #0f0f0f; display: flex; align-items: center; gap: 10px; }
 .crew-row:last-child { border-bottom: none; }
@@ -124,50 +97,43 @@ html, body { background: var(--bg); color: var(--text); font-family: var(--font)
 .log-time { font-size: 9px; color: var(--text3); font-family: var(--mono); white-space: nowrap; margin-top: 2px; flex-shrink: 0; }
 .log-text { font-size: 11px; color: #555; line-height: 1.4; }
 .log-text em { color: #777; font-style: normal; }
-
 .note { text-align: center; font-size: 10px; color: var(--text3); font-family: var(--mono); padding: 12px 24px 20px; }
 
-/* DISPATCH MODAL */
+/* MODALS */
 .modal-wrap { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 100; align-items: center; justify-content: center; backdrop-filter: blur(3px); }
 .modal-wrap.open { display: flex; }
 .modal { background: var(--bg1); border: 1px solid var(--border2); border-radius: 14px; padding: 24px; max-width: 400px; width: calc(100% - 40px); animation: pop 0.18s ease; }
 @keyframes pop { from{transform:scale(0.96);opacity:0} to{transform:scale(1);opacity:1} }
-.modal-title { font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 4px; letter-spacing: -0.2px; }
+.modal-title { font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 4px; }
 .modal-sub { font-size: 12px; color: var(--text2); margin-bottom: 16px; }
-.modal-close-x { position: absolute; top: 16px; right: 16px; background: transparent; border: none; color: var(--text2); cursor: pointer; font-size: 18px; line-height: 1; }
-
 .crew-option { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1px solid var(--border); border-radius: 9px; margin-bottom: 8px; cursor: pointer; transition: all 0.15s; background: var(--bg2); position: relative; }
-.crew-option:hover { border-color: var(--blue); background: var(--bg3); }
+.crew-option:hover:not(.unavailable) { border-color: var(--blue); background: var(--bg3); }
 .crew-option.unavailable { opacity: 0.4; cursor: not-allowed; }
-.crew-option.unavailable:hover { border-color: var(--border); background: var(--bg2); }
 .crew-option-avatar { width: 36px; height: 36px; background: var(--bg3); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: var(--text2); font-family: var(--mono); flex-shrink: 0; }
 .crew-option-name { font-size: 13px; font-weight: 500; color: #ddd; }
 .crew-option-role { font-size: 11px; color: var(--text3); margin-top: 1px; }
+.crew-status-tag { font-size: 9px; font-weight: 600; font-family: var(--mono); padding: 2px 6px; border-radius: 3px; margin-top: 4px; display: inline-block; }
+.crew-status-tag.avail { background: var(--green-dim); color: var(--green); }
+.crew-status-tag.busy { background: rgba(245,158,11,0.08); color: #e8a020; }
 .crew-option-right { margin-left: auto; text-align: right; }
-.crew-option-dist { font-size: 12px; font-weight: 600; color: var(--text); font-family: var(--mono); }
-.crew-option-eta { font-size: 10px; color: var(--text2); margin-top: 2px; }
-.crew-option-status { font-size: 9px; font-weight: 600; font-family: var(--mono); padding: 2px 6px; border-radius: 3px; margin-top: 4px; display: inline-block; }
-.crew-option-status.avail { background: var(--green-dim); color: var(--green); }
-.crew-option-status.busy { background: rgba(245,158,11,0.08); color: #e8a020; }
-.closest-badge { position: absolute; top: -7px; left: 12px; background: var(--accent); color: #fff; font-size: 9px; font-weight: 600; font-family: var(--mono); padding: 1px 7px; border-radius: 3px; letter-spacing: 0.3px; }
+.crew-dist { font-size: 12px; font-weight: 600; color: var(--text); font-family: var(--mono); }
+.crew-eta { font-size: 10px; color: var(--text2); margin-top: 2px; }
+.closest-badge { position: absolute; top: -7px; left: 12px; background: var(--accent); color: #fff; font-size: 9px; font-weight: 600; font-family: var(--mono); padding: 1px 7px; border-radius: 3px; }
+.confirm-box { background: var(--bg2); border: 1px solid rgba(76,175,125,0.25); border-radius: 10px; padding: 18px; margin-bottom: 16px; text-align: center; }
+.confirm-check { width: 44px; height: 44px; background: var(--green-dim); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; }
+.confirm-title { font-size: 14px; font-weight: 600; color: #ddd; margin-bottom: 3px; }
+.confirm-sub { font-size: 12px; color: var(--text2); }
+.confirm-detail { background: var(--bg); border: 1px solid var(--border); border-radius: 7px; padding: 12px 14px; margin: 12px 0 0; text-align: left; font-size: 12px; color: var(--text2); line-height: 1.9; }
+.confirm-detail strong { color: #bbb; }
+.modal-cancel { width: 100%; background: transparent; border: 1px solid var(--border2); color: var(--text2); border-radius: 8px; padding: 9px; font-size: 12px; font-family: var(--font); cursor: pointer; transition: all 0.15s; margin-top: 8px; }
+.modal-cancel:hover { border-color: #444; color: var(--text); }
 
-/* CONFIRM STATE */
-.confirm-box { background: var(--bg2); border: 1px solid rgba(76,175,125,0.25); border-radius: 10px; padding: 16px; margin-bottom: 16px; text-align: center; }
-.confirm-icon { font-size: 28px; margin-bottom: 8px; }
-.confirm-msg { font-size: 13px; font-weight: 500; color: #ddd; margin-bottom: 4px; }
-.confirm-sub { font-size: 11px; color: var(--text2); }
-.confirm-detail { background: var(--bg); border: 1px solid var(--border); border-radius: 7px; padding: 10px 14px; margin: 12px 0; text-align: left; font-size: 12px; color: var(--text2); line-height: 1.8; }
-.confirm-detail strong { color: #ccc; }
-
-.modal-close-btn { width: 100%; background: transparent; border: 1px solid var(--border2); color: var(--text2); border-radius: 8px; padding: 8px; font-size: 12px; font-family: var(--font); cursor: pointer; transition: all 0.15s; }
-.modal-close-btn:hover { border-color: #444; color: var(--text); }
-
-/* HOW IT WORKS MODAL */
+/* HOW IT WORKS */
 .how-modal { background: var(--bg1); border: 1px solid var(--border2); border-radius: 14px; padding: 28px; max-width: 360px; width: calc(100% - 40px); text-align: center; animation: pop 0.18s ease; }
-.how-modal-icon { width: 52px; height: 52px; background: var(--accent-dim); border: 1px solid var(--accent-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
-.how-modal-title { font-size: 18px; font-weight: 600; color: #fff; margin-bottom: 6px; letter-spacing: -0.3px; }
-.how-modal-sub { font-size: 13px; color: var(--text2); line-height: 1.5; margin-bottom: 20px; }
-.how-modal-num { font-size: 26px; font-weight: 600; color: var(--accent); font-family: var(--mono); letter-spacing: 1px; margin-bottom: 8px; }
+.how-icon { width: 52px; height: 52px; background: var(--accent-dim); border: 1px solid var(--accent-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+.how-title { font-size: 18px; font-weight: 600; color: #fff; margin-bottom: 6px; }
+.how-sub { font-size: 13px; color: var(--text2); line-height: 1.5; margin-bottom: 20px; }
+.how-num { font-size: 26px; font-weight: 600; color: var(--accent); font-family: var(--mono); letter-spacing: 1px; margin-bottom: 8px; }
 .copy-btn { background: var(--bg3); border: 1px solid var(--border2); color: var(--text2); border-radius: 7px; padding: 5px 14px; font-size: 11px; font-family: var(--font); cursor: pointer; margin-bottom: 20px; transition: all 0.15s; display: inline-flex; align-items: center; gap: 5px; }
 .copy-btn:hover { color: var(--text); }
 .steps { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 14px; text-align: left; margin-bottom: 18px; }
@@ -186,10 +152,7 @@ html, body { background: var(--bg); color: var(--text); font-family: var(--font)
     <span class="logo-name">DispatchIQ</span>
     <span class="logo-tag">/ live demo</span>
   </div>
-  <div class="status-pill">
-    <div class="live-dot"></div>
-    <span id="clock">--:-- --</span>
-  </div>
+  <div class="status-pill"><div class="live-dot"></div><span id="clock">--:-- --</span></div>
   <div class="topbar-right">
     <button class="btn-ghost" onclick="resetDemo()">
       <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 .49-4.95"></path></svg>
@@ -247,22 +210,22 @@ html, body { background: var(--bg); color: var(--text); font-family: var(--font)
 
 <div class="note">In production, this board populates automatically from real inbound calls.</div>
 
-<!-- DISPATCH CREW MODAL -->
+<!-- DISPATCH MODAL -->
 <div class="modal-wrap" id="dispatch-modal">
-  <div class="modal" style="position:relative;">
-    <div id="dispatch-modal-content"></div>
+  <div class="modal">
+    <div id="dispatch-content"></div>
   </div>
 </div>
 
 <!-- HOW IT WORKS MODAL -->
 <div class="modal-wrap" id="how-modal">
   <div class="how-modal">
-    <div class="how-modal-icon">
+    <div class="how-icon">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 010 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L4.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14v2.92z"/></svg>
     </div>
-    <div class="how-modal-title">Call the AI dispatcher</div>
-    <div class="how-modal-sub">Talk to DispatchIQ's AI, report a job, then watch this dashboard update live.</div>
-    <div class="how-modal-num">+1 (215) 874-0980</div>
+    <div class="how-title">Call the AI dispatcher</div>
+    <div class="how-sub">Talk to DispatchIQ's AI, report a job, then watch this dashboard update live.</div>
+    <div class="how-num">+1 (215) 874-0980</div>
     <button class="copy-btn" id="copy-btn" onclick="copyNum()">Copy number</button>
     <div class="steps">
       <div class="step"><div class="step-n">1</div><span>Call <strong style="color:#ccc">+1 (215) 874-0980</strong> from your phone</span></div>
@@ -270,7 +233,7 @@ html, body { background: var(--bg); color: var(--text); font-family: var(--font)
       <div class="step"><div class="step-n">3</div><span>Hang up — your job appears here within seconds</span></div>
       <div class="step"><div class="step-n">4</div><span>Dispatch a technician and resolve the job</span></div>
     </div>
-    <button class="modal-close-btn" onclick="closeHowModal()">Close</button>
+    <button class="modal-cancel" onclick="closeHowModal()">Close</button>
   </div>
 </div>
 
@@ -279,11 +242,11 @@ const SUPABASE_URL = 'https://ampuejhdkgvjttvlkayc.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFtcHVlamhka2d2anR0dmxrYXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc4NTc2MzMsImV4cCI6MjA5MzQzMzYzM30.T4nFUlCTiapCx8kxr7sOo2zlKgKg-VlmaYNZXQNC7UU';
 
 const CREW = [
-  { id: 'c1', name: 'Sam Okafor',   role: 'Plumber',      initials: 'SO', status: 'avail', dist: 1.2, eta: 4  },
-  { id: 'c2', name: 'Tanya Brown',  role: 'General Tech', initials: 'TB', status: 'avail', dist: 2.7, eta: 8  },
-  { id: 'c3', name: 'Luis Vega',    role: 'Restoration',  initials: 'LV', status: 'avail', dist: 3.9, eta: 12 },
-  { id: 'c4', name: 'Mike Rossi',   role: 'HVAC Tech',    initials: 'MR', status: 'busy',  dist: 2.1, eta: 6  },
-  { id: 'c5', name: 'Dave Greco',   role: 'Electrician',  initials: 'DG', status: 'busy',  dist: 4.3, eta: 14 },
+  { id: 'c1', name: 'Sam Okafor',  role: 'Plumber',      initials: 'SO', status: 'avail', dist: 1.2, eta: 4  },
+  { id: 'c2', name: 'Tanya Brown', role: 'General Tech', initials: 'TB', status: 'avail', dist: 2.7, eta: 8  },
+  { id: 'c3', name: 'Luis Vega',   role: 'Restoration',  initials: 'LV', status: 'avail', dist: 3.9, eta: 12 },
+  { id: 'c4', name: 'Mike Rossi',  role: 'HVAC Tech',    initials: 'MR', status: 'busy',  dist: 2.1, eta: 6  },
+  { id: 'c5', name: 'Dave Greco',  role: 'Electrician',  initials: 'DG', status: 'busy',  dist: 4.3, eta: 14 },
 ];
 
 const SEED = [{
@@ -301,7 +264,7 @@ let jobs = JSON.parse(JSON.stringify(SEED));
 let logs = [];
 let filter = 'all';
 let knownIds = new Set(jobs.map(j => j.id));
-let dispatchingJobId = null;
+let activeJobId = null;
 
 function ago(iso) {
   const m = Math.floor((Date.now() - new Date(iso)) / 60000);
@@ -324,28 +287,35 @@ function render() {
   if (!filtered.length) {
     list.innerHTML = '<div class="empty">No jobs in this view</div>';
   } else {
-    list.innerHTML = filtered.map(j => `
-      <div class="job ${j._new ? 'new-in' : ''}" id="j-${j.id}">
-        <div class="job-bar ${barClass(j)}"></div>
-        <div>
-          <div class="job-name-row">
-            <span class="job-name">${j.caller_name || 'Unknown caller'}</span>
-            ${j.is_emergency ? '<span class="tag emergency">EMERGENCY</span>' : ''}
-          </div>
-          <div class="job-addr">${j.service_address || 'Address not provided'}</div>
-          <div class="job-prob">${j.problem_description || 'No description'}</div>
-        </div>
-        <div class="job-right">
-          <div class="job-time">${ago(j.created_at)}</div>
-          <span class="tag ${j.status}">${j.status}</span>
-          <div class="job-actions">
-            ${j.status === 'new' ? `<button class="act dispatch" onclick="openDispatchModal('${j.id}')">Dispatch</button>` : ''}
-            ${j.status === 'dispatched' ? `<button class="act resolve" onclick="resolve('${j.id}')">Resolve</button>` : ''}
-          </div>
-        </div>
-      </div>
-    `).join('');
+    list.innerHTML = filtered.map(j => {
+      const barCls = barClass(j);
+      const emgTag = j.is_emergency ? '<span class="tag emergency">EMERGENCY</span>' : '';
+      const dispBtn = j.status === 'new' ? '<button class="act dispatch" data-jobid="' + j.id + '">Dispatch</button>' : '';
+      const resBtn = j.status === 'dispatched' ? '<button class="act resolve" data-jobid="' + j.id + '">Resolve</button>' : '';
+      return '<div class="job' + (j._new ? ' new-in' : '') + '">' +
+        '<div class="job-bar ' + barCls + '"></div>' +
+        '<div>' +
+          '<div class="job-name-row"><span class="job-name">' + (j.caller_name || 'Unknown caller') + '</span>' + emgTag + '</div>' +
+          '<div class="job-addr">' + (j.service_address || 'Address not provided') + '</div>' +
+          '<div class="job-prob">' + (j.problem_description || 'No description') + '</div>' +
+        '</div>' +
+        '<div class="job-right">' +
+          '<div class="job-time">' + ago(j.created_at) + '</div>' +
+          '<span class="tag ' + j.status + '">' + j.status + '</span>' +
+          '<div class="job-actions">' + dispBtn + resBtn + '</div>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+
+    // Attach click handlers via event delegation
+    list.querySelectorAll('.act.dispatch').forEach(btn => {
+      btn.addEventListener('click', function() { openDispatchModal(this.dataset.jobid); });
+    });
+    list.querySelectorAll('.act.resolve').forEach(btn => {
+      btn.addEventListener('click', function() { resolveJob(this.dataset.jobid); });
+    });
   }
+
   document.getElementById('s-active').textContent = jobs.filter(j => j.status === 'new').length;
   document.getElementById('s-emerg').textContent = jobs.filter(j => j.is_emergency && j.status !== 'resolved').length;
   document.getElementById('s-disp').textContent = jobs.filter(j => j.status === 'dispatched').length;
@@ -353,84 +323,92 @@ function render() {
 }
 
 function openDispatchModal(jobId) {
-  dispatchingJobId = jobId;
+  activeJobId = jobId;
   const job = jobs.find(j => j.id === jobId);
-  const available = CREW.filter(c => c.status === 'avail').sort((a,b) => a.dist - b.dist);
-  const unavailable = CREW.filter(c => c.status === 'busy').sort((a,b) => a.dist - b.dist);
+  const available = CREW.filter(c => c.status === 'avail').sort((a, b) => a.dist - b.dist);
+  const unavailable = CREW.filter(c => c.status === 'busy').sort((a, b) => a.dist - b.dist);
   const sorted = [...available, ...unavailable];
 
-  document.getElementById('dispatch-modal-content').innerHTML = `
-    <div style="margin-bottom:16px;">
-      <div class="modal-title">Dispatch a technician</div>
-      <div class="modal-sub">${job ? job.caller_name + ' — ' + (job.service_address || 'unknown address') : ''}</div>
-    </div>
-    ${sorted.map((c, i) => `
-      <div class="crew-option ${c.status === 'busy' ? 'unavailable' : ''}" onclick="${c.status === 'avail' ? `confirmDispatch('${jobId}','${c.id}')` : ''}">
-        ${i === 0 && c.status === 'avail' ? '<div class="closest-badge">CLOSEST</div>' : ''}
-        <div class="crew-option-avatar">${c.initials}</div>
-        <div>
-          <div class="crew-option-name">${c.name}</div>
-          <div class="crew-option-role">${c.role}</div>
-          <span class="crew-option-status ${c.status === 'avail' ? 'avail' : 'busy'}">${c.status === 'avail' ? 'Available' : 'On job'}</span>
-        </div>
-        <div class="crew-option-right">
-          <div class="crew-option-dist">${c.dist} mi</div>
-          <div class="crew-option-eta">ETA ~${c.eta} min</div>
-        </div>
-      </div>
-    `).join('')}
-    <button class="modal-close-btn" style="margin-top:8px;" onclick="closeDispatchModal()">Cancel</button>
-  `;
+  const crewHTML = sorted.map((c, i) => {
+    const isFirst = i === 0 && c.status === 'avail';
+    const unavailClass = c.status === 'busy' ? ' unavailable' : '';
+    const closestBadge = isFirst ? '<div class="closest-badge">CLOSEST</div>' : '';
+    return '<div class="crew-option' + unavailClass + '" data-crewid="' + c.id + '">' +
+      closestBadge +
+      '<div class="crew-option-avatar">' + c.initials + '</div>' +
+      '<div>' +
+        '<div class="crew-option-name">' + c.name + '</div>' +
+        '<div class="crew-option-role">' + c.role + '</div>' +
+        '<span class="crew-status-tag ' + (c.status === 'avail' ? 'avail' : 'busy') + '">' + (c.status === 'avail' ? 'Available' : 'On job') + '</span>' +
+      '</div>' +
+      '<div class="crew-option-right">' +
+        '<div class="crew-dist">' + c.dist + ' mi</div>' +
+        '<div class="crew-eta">ETA ~' + c.eta + ' min</div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+
+  document.getElementById('dispatch-content').innerHTML =
+    '<div class="modal-title">Dispatch a technician</div>' +
+    '<div class="modal-sub">' + (job ? (job.caller_name || 'Unknown') + ' — ' + (job.service_address || 'unknown address') : '') + '</div>' +
+    crewHTML +
+    '<button class="modal-cancel" id="cancel-dispatch">Cancel</button>';
+
+  document.getElementById('cancel-dispatch').addEventListener('click', closeDispatchModal);
+
+  document.querySelectorAll('.crew-option:not(.unavailable)').forEach(el => {
+    el.addEventListener('click', function() {
+      showConfirmation(activeJobId, this.dataset.crewid);
+    });
+  });
+
   document.getElementById('dispatch-modal').classList.add('open');
 }
 
-function confirmDispatch(jobId, crewId) {
+function showConfirmation(jobId, crewId) {
   const job = jobs.find(j => j.id === jobId);
   const crew = CREW.find(c => c.id === crewId);
   if (!job || !crew) return;
 
-  document.getElementById('dispatch-modal-content').innerHTML = `
-    <div class="confirm-box">
-      <div class="confirm-icon">✓</div>
-      <div class="confirm-msg">${crew.name} has been dispatched</div>
-      <div class="confirm-sub">En route to job site</div>
-      <div class="confirm-detail">
-        <strong>Technician:</strong> ${crew.name} (${crew.role})<br>
-        <strong>Distance:</strong> ${crew.dist} miles away<br>
-        <strong>ETA:</strong> ~${crew.eta} minutes<br>
-        <strong>Job:</strong> ${job.problem_description || 'No description'}<br>
-        <strong>Address:</strong> ${job.service_address || 'Unknown'}
-      </div>
-    </div>
-    <button class="modal-close-btn" onclick="finalizeDispatch('${jobId}','${crewId}')">Done</button>
-  `;
+  document.getElementById('dispatch-content').innerHTML =
+    '<div class="confirm-box">' +
+      '<div class="confirm-check">' +
+        '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>' +
+      '</div>' +
+      '<div class="confirm-title">' + crew.name + ' dispatched</div>' +
+      '<div class="confirm-sub">En route to job site</div>' +
+      '<div class="confirm-detail">' +
+        '<strong>Technician:</strong> ' + crew.name + ' (' + crew.role + ')<br>' +
+        '<strong>Distance:</strong> ' + crew.dist + ' miles away<br>' +
+        '<strong>ETA:</strong> ~' + crew.eta + ' minutes<br>' +
+        '<strong>Problem:</strong> ' + (job.problem_description || 'No description') + '<br>' +
+        '<strong>Address:</strong> ' + (job.service_address || 'Unknown') +
+      '</div>' +
+    '</div>' +
+    '<button class="modal-cancel" id="done-dispatch">Done</button>';
 
-  // Mark crew as busy
+  // Mark crew busy, job dispatched
   crew.status = 'busy';
+  job.status = 'dispatched';
+  addLog(crew.name + ' dispatched → ' + (job.caller_name || 'Unknown'));
   renderCrew();
-}
 
-function finalizeDispatch(jobId, crewId) {
-  const job = jobs.find(j => j.id === jobId);
-  const crew = CREW.find(c => c.id === crewId);
-  if (job) {
-    job.status = 'dispatched';
-    addLog(`<em>${crew ? crew.name : 'Crew'}</em> dispatched → <em>${job.caller_name || 'Unknown'}</em>`);
-  }
-  closeDispatchModal();
-  render();
+  document.getElementById('done-dispatch').addEventListener('click', function() {
+    closeDispatchModal();
+    render();
+  });
 }
 
 function closeDispatchModal() {
   document.getElementById('dispatch-modal').classList.remove('open');
-  dispatchingJobId = null;
+  activeJobId = null;
 }
 
-function resolve(id) {
-  const j = jobs.find(x => x.id === id);
+function resolveJob(jobId) {
+  const j = jobs.find(x => x.id === jobId);
   if (!j) return;
   j.status = 'resolved';
-  addLog(`Job resolved — <em>${j.caller_name || 'Unknown'}</em>`);
+  addLog('Job resolved — ' + (j.caller_name || 'Unknown'));
   render();
 }
 
@@ -444,7 +422,7 @@ function setFilter(f, btn) {
 function resetDemo() {
   jobs = JSON.parse(JSON.stringify(SEED));
   knownIds = new Set(jobs.map(j => j.id));
-  CREW.forEach(c => { c.status = ['MR','DG'].includes(c.initials) ? 'busy' : 'avail'; });
+  CREW.forEach(c => { c.status = (c.id === 'c4' || c.id === 'c5') ? 'busy' : 'avail'; });
   logs = [];
   addLog('Demo reset — board restored');
   render();
@@ -452,16 +430,13 @@ function resetDemo() {
 }
 
 function renderCrew() {
-  document.getElementById('crew').innerHTML = CREW.map(c => `
-    <div class="crew-row">
-      <div class="avatar">${c.initials}</div>
-      <div>
-        <div class="crew-name">${c.name}</div>
-        <div class="crew-role">${c.role}</div>
-      </div>
-      <span class="crew-badge ${c.status === 'avail' ? 'avail' : 'busy'}">${c.status === 'avail' ? 'Available' : 'On job'}</span>
-    </div>
-  `).join('');
+  document.getElementById('crew').innerHTML = CREW.map(c =>
+    '<div class="crew-row">' +
+      '<div class="avatar">' + c.initials + '</div>' +
+      '<div><div class="crew-name">' + c.name + '</div><div class="crew-role">' + c.role + '</div></div>' +
+      '<span class="crew-badge ' + (c.status === 'avail' ? 'avail' : 'busy') + '">' + (c.status === 'avail' ? 'Available' : 'On job') + '</span>' +
+    '</div>'
+  ).join('');
 }
 
 function renderLog() {
@@ -470,12 +445,9 @@ function renderLog() {
     el.innerHTML = '<div class="log-row"><span class="log-text" style="color:var(--text3)">Waiting for activity...</span></div>';
     return;
   }
-  el.innerHTML = logs.slice(0, 8).map(l => `
-    <div class="log-row">
-      <span class="log-time">${l.t}</span>
-      <span class="log-text">${l.text}</span>
-    </div>
-  `).join('');
+  el.innerHTML = logs.slice(0, 8).map(l =>
+    '<div class="log-row"><span class="log-time">' + l.t + '</span><span class="log-text">' + l.text + '</span></div>'
+  ).join('');
 }
 
 function addLog(text) {
@@ -494,12 +466,12 @@ function copyNum() {
   navigator.clipboard.writeText('+12158740980').catch(() => {});
   const b = document.getElementById('copy-btn');
   b.textContent = '✓ Copied';
-  setTimeout(() => b.textContent = 'Copy number', 2000);
+  setTimeout(() => { b.textContent = 'Copy number'; }, 2000);
 }
 
 async function poll() {
   try {
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/dispatch_calls?order=created_at.desc&limit=50`, {
+    const res = await fetch(SUPABASE_URL + '/rest/v1/dispatch_calls?order=created_at.desc&limit=50', {
       headers: { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + SUPABASE_KEY }
     });
     if (!res.ok) return;
@@ -510,8 +482,8 @@ async function poll() {
         knownIds.add(row.id);
         const j = { id: row.id, caller_name: row.caller_name, service_address: row.service_address, callback_phone: row.callback_phone, problem_description: row.problem_description, is_emergency: row.is_emergency === true || row.is_emergency === 'true', status: row.status || 'new', created_at: row.created_at, _new: true };
         jobs.unshift(j);
-        addLog(`New call — <em>${j.caller_name}</em> at ${j.service_address || 'unknown address'}`);
-        if (j.is_emergency) addLog(`🚨 Emergency — <em>${j.caller_name}</em> needs priority response`);
+        addLog('New call — ' + j.caller_name + ' at ' + (j.service_address || 'unknown'));
+        if (j.is_emergency) addLog('🚨 Emergency — ' + j.caller_name + ' needs priority response');
         changed = true;
         setTimeout(() => { const x = jobs.find(x => x.id === j.id); if (x) x._new = false; }, 1500);
       }
