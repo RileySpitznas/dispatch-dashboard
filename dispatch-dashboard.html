@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DispatchIQ — Live Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0c0c0c;
+  --bg1: #131313;
+  --bg2: #181818;
+  --bg3: #1f1f1f;
+  --border: #242424;
+  --border2: #2e2e2e;
+  --text: #e8e8e8;
+  --text2: #777;
+  --text3: #3a3a3a;
+  --accent: #e8650a;
+  --accent-dim: rgba(232,101,10,0.08);
+  --accent-border: rgba(232,101,10,0.2);
+  --red: #e05252;
+  --red-dim: rgba(224,82,82,0.08);
+  --green: #4caf7d;
+  --green-dim: rgba(76,175,125,0.08);
+  --blue: #5b8dee;
+  --blue-dim: rgba(91,141,238,0.08);
+  --blue-border: rgba(91,141,238,0.2);
+  --font: 'DM Sans', sans-serif;
+  --mono: 'DM Mono', monospace;
+  --radius: 10px;
+}
+
+html, body { background: var(--bg); color: var(--text); font-family: var(--font); min-height: 100vh; font-size: 14px; }
+
+/* TOPBAR */
+.topbar {
+  height: 52px;
+  background: var(--bg1);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.logo-mark {
+  width: 28px;
+  height: 28px;
+  background: var(--accent);
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-name { font-size: 14px; font-weight: 600; color: #fff; letter-spacing: -0.2px; }
+.logo-tag { font-size: 11px; color: var(--text3); font-family: var(--mono); margin-left: 6px; }
+
+.status-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text2);
+}
+
+.live-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--green);
+  border-radius: 50%;
+  animation: blink 2s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.topbar-right { display: flex; align-items: center; gap: 8px; }
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--text2);
+  border-radius: var(--radius);
+  padding: 6px 12px;
+  font-size: 12px;
+  font-family: var(--font);
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.btn-ghost:hover { border-color: #444; color: var(--text); }
+
+.btn-primary {
+  background: var(--accent);
+  border: none;
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 7px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: var(--font);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.15s;
+}
+.btn-primary:hover { background: #d45a08; }
+
+/* CALL BANNER */
+.banner {
+  margin: 16px 24px 0;
+  background: var(--bg1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.banner-left { display: flex; align-items: center; gap: 12px; }
+
+.banner-icon {
+  width: 32px;
+  height: 32px;
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-border);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.banner-title { font-size: 13px; font-weight: 500; color: var(--text); }
+.banner-sub { font-size: 11px; color: var(--text2); margin-top: 1px; }
+
+.banner-number {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--accent);
+  font-family: var(--mono);
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+/* STATS */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 12px 24px 0;
+}
+
+.stat {
+  background: var(--bg1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+}
+
+.stat-label {
+  font-size: 10px;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-family: var(--mono);
+  margin-bottom: 8px;
+}
+
+.stat-val {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1;
+  font-family: var(--mono);
+}
+
+.stat-sub { font-size: 11px; color: var(--text3); margin-top: 3px; }
+.stat.orange .stat-val { color: var(--accent); }
+.stat.red .stat-val { color: var(--red); }
+.stat.blue .stat-val { color: var(--blue); }
+.stat.green .stat-val { color: var(--green); }
+
+/* MAIN */
+.main {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 10px;
+  padding: 12px 24px 24px;
+}
+
+/* PANEL */
+.panel {
+  background: var(--bg1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.panel-head {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.panel-title {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text2);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-family: var(--mono);
+}
+
+.filters { display: flex; gap: 3px; }
+
+.filter {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text3);
+  border-radius: 6px;
+  padding: 3px 9px;
+  font-size: 11px;
+  font-family: var(--font);
+  cursor: pointer;
+  transition: all 0.12s;
+}
+
+.filter:hover { color: var(--text2); }
+.filter.active { background: var(--bg3); border-color: var(--border2); color: var(--text); }
+
+/* JOB ROW */
+.job {
+  padding: 13px 16px;
+  border-bottom: 1px solid #0f0f0f;
+  display: grid;
+  grid-template-columns: 2px 1fr auto;
+  gap: 12px;
+  align-items: start;
+  transition: background 0.1s;
+}
+
+.job:last-child { border-bottom: none; }
+.job:hover { background: var(--bg2); }
+
+.job.new-in { animation: slideIn 0.4s ease; }
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-6px); background: rgba(232,101,10,0.06); }
+  to { opacity: 1; transform: translateY(0); background: transparent; }
+}
+
+.job-bar { align-self: stretch; border-radius: 2px; }
+.job-bar.emergency { background: var(--red); }
+.job-bar.normal { background: var(--accent); }
+.job-bar.dispatched { background: var(--blue); }
+.job-bar.resolved { background: var(--border2); }
+
+.job-name-row { display: flex; align-items: center; gap: 6px; margin-bottom: 3px; }
+.job-name { font-size: 13px; font-weight: 500; color: #ddd; }
+
+.tag {
+  font-size: 9px;
+  font-weight: 600;
+  border-radius: 3px;
+  padding: 2px 5px;
+  letter-spacing: 0.5px;
+  font-family: var(--mono);
+}
+
+.tag.emergency { background: var(--red-dim); color: var(--red); }
+.tag.new { background: var(--accent-dim); color: var(--accent); }
+.tag.dispatched { background: var(--blue-dim); color: var(--blue); }
+.tag.resolved { background: var(--green-dim); color: var(--green); }
+
+.job-addr { font-size: 11px; color: var(--text3); margin-bottom: 3px; }
+.job-prob { font-size: 12px; color: var(--text2); line-height: 1.4; }
+
+.job-right { text-align: right; flex-shrink: 0; }
+.job-time { font-size: 10px; color: var(--text3); font-family: var(--mono); margin-bottom: 6px; }
+
+.job-actions { display: flex; gap: 4px; justify-content: flex-end; margin-top: 6px; }
+
+.act {
+  border: none;
+  border-radius: 5px;
+  padding: 4px 9px;
+  font-size: 11px;
+  font-weight: 500;
+  font-family: var(--font);
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.act:hover { opacity: 0.8; }
+.act.dispatch { background: var(--blue-dim); color: var(--blue); border: 1px solid var(--blue-border); }
+.act.resolve { background: var(--green-dim); color: var(--green); border: 1px solid rgba(76,175,125,0.2); }
+
+.empty { padding: 40px; text-align: center; color: var(--text3); font-size: 12px; }
+
+/* SIDEBAR */
+.sidebar { display: flex; flex-direction: column; gap: 10px; }
+
+.crew-row {
+  padding: 10px 14px;
+  border-bottom: 1px solid #0f0f0f;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.crew-row:last-child { border-bottom: none; }
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  background: var(--bg3);
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text2);
+  font-family: var(--mono);
+  flex-shrink: 0;
+}
+
+.crew-name { font-size: 12px; font-weight: 500; color: #ccc; }
+.crew-role { font-size: 10px; color: var(--text3); margin-top: 1px; }
+
+.crew-badge {
+  margin-left: auto;
+  font-size: 9px;
+  font-weight: 600;
+  font-family: var(--mono);
+  padding: 2px 6px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+.crew-badge.avail { background: var(--green-dim); color: var(--green); }
+.crew-badge.busy { background: rgba(245,158,11,0.08); color: #e8a020; }
+
+.log-row {
+  padding: 8px 14px;
+  border-bottom: 1px solid #0f0f0f;
+  display: flex;
+  gap: 8px;
+}
+.log-row:last-child { border-bottom: none; }
+.log-time { font-size: 9px; color: var(--text3); font-family: var(--mono); white-space: nowrap; margin-top: 2px; flex-shrink: 0; }
+.log-text { font-size: 11px; color: #555; line-height: 1.4; }
+.log-text em { color: #777; font-style: normal; }
+
+/* FOOTER NOTE */
+.note {
+  text-align: center;
+  font-size: 10px;
+  color: var(--text3);
+  font-family: var(--mono);
+  padding: 12px 24px 20px;
+}
+
+/* MODAL */
+.modal-wrap {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(3px);
+}
+.modal-wrap.open { display: flex; }
+
+.modal {
+  background: var(--bg1);
+  border: 1px solid var(--border2);
+  border-radius: 14px;
+  padding: 28px;
+  max-width: 360px;
+  width: calc(100% - 40px);
+  text-align: center;
+  animation: pop 0.18s ease;
+}
+@keyframes pop {
+  from { transform: scale(0.96); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modal-icon {
+  width: 52px;
+  height: 52px;
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+}
+
+.modal-title { font-size: 18px; font-weight: 600; color: #fff; margin-bottom: 6px; letter-spacing: -0.3px; }
+.modal-sub { font-size: 13px; color: var(--text2); line-height: 1.5; margin-bottom: 20px; }
+.modal-num { font-size: 26px; font-weight: 600; color: var(--accent); font-family: var(--mono); letter-spacing: 1px; margin-bottom: 8px; }
+
+.copy-btn {
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  color: var(--text2);
+  border-radius: 7px;
+  padding: 5px 14px;
+  font-size: 11px;
+  font-family: var(--font);
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: all 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.copy-btn:hover { color: var(--text); }
+
+.steps {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  text-align: left;
+  margin-bottom: 18px;
+}
+
+.step {
+  display: flex;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--text2);
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+.step:last-child { margin-bottom: 0; }
+
+.step-n {
+  width: 18px;
+  height: 18px;
+  background: var(--accent-dim);
+  color: var(--accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 700;
+  font-family: var(--mono);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.modal-close {
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--text2);
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 12px;
+  font-family: var(--font);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.modal-close:hover { border-color: #444; color: var(--text); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo">
+    <div class="logo-mark">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 010 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L4.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14v2.92z"/></svg>
+    </div>
+    <span class="logo-name">DispatchIQ</span>
+    <span class="logo-tag">/ live demo</span>
+  </div>
+
+  <div class="status-pill">
+    <div class="live-dot"></div>
+    <span id="clock">--:-- --</span>
+  </div>
+
+  <div class="topbar-right">
+    <button class="btn-ghost" onclick="resetDemo()">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 .49-4.95"></path></svg>
+      Reset
+    </button>
+    <button class="btn-primary" onclick="openModal()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 010 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L4.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14v2.92z"/></svg>
+      Try the demo
+    </button>
+  </div>
+</div>
+
+<div class="banner">
+  <div class="banner-left">
+    <div class="banner-icon">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 010 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L4.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14v2.92z"/></svg>
+    </div>
+    <div>
+      <div class="banner-title">Call the AI agent — watch your job appear live</div>
+      <div class="banner-sub">After your call ends, this board updates in real time. No refresh needed.</div>
+    </div>
+  </div>
+  <div class="banner-number">+1 (215) 874-0980</div>
+  <button class="btn-primary" onclick="openModal()">How it works</button>
+</div>
+
+<div class="stats">
+  <div class="stat orange">
+    <div class="stat-label">Active</div>
+    <div class="stat-val" id="s-active">0</div>
+    <div class="stat-sub">awaiting dispatch</div>
+  </div>
+  <div class="stat red">
+    <div class="stat-label">Emergencies</div>
+    <div class="stat-val" id="s-emerg">0</div>
+    <div class="stat-sub">priority response</div>
+  </div>
+  <div class="stat blue">
+    <div class="stat-label">Dispatched</div>
+    <div class="stat-val" id="s-disp">0</div>
+    <div class="stat-sub">crew en route</div>
+  </div>
+  <div class="stat green">
+    <div class="stat-label">Resolved</div>
+    <div class="stat-val" id="s-res">0</div>
+    <div class="stat-sub">jobs closed</div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="panel">
+    <div class="panel-head">
+      <span class="panel-title">Job feed</span>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="filters">
+          <button class="filter active" onclick="setFilter('all',this)">All</button>
+          <button class="filter" onclick="setFilter('new',this)">New</button>
+          <button class="filter" onclick="setFilter('dispatched',this)">Dispatched</button>
+          <button class="filter" onclick="setFilter('resolved',this)">Resolved</button>
+        </div>
+        <span id="job-count" style="font-size:10px;color:var(--text3);font-family:var(--mono);"></span>
+      </div>
+    </div>
+    <div id="job-list"></div>
+  </div>
+
+  <div class="sidebar">
+    <div class="panel">
+      <div class="panel-head"><span class="panel-title">Field crew</span></div>
+      <div id="crew"></div>
+    </div>
+    <div class="panel">
+      <div class="panel-head"><span class="panel-title">Activity</span></div>
+      <div id="log"></div>
+    </div>
+  </div>
+</div>
+
+<div class="note">In production, this board populates automatically from real inbound calls.</div>
+
+<div class="modal-wrap" id="modal">
+  <div class="modal">
+    <div class="modal-icon">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 010 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L4.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14v2.92z"/></svg>
+    </div>
+    <div class="modal-title">Call the AI dispatcher</div>
+    <div class="modal-sub">Talk to DispatchIQ's AI, report a job, then watch this dashboard update live.</div>
+    <div class="modal-num">+1 (215) 874-0980</div>
+    <button class="copy-btn" id="copy-btn" onclick="copyNum()">Copy number</button>
+    <div class="steps">
+      <div class="step"><div class="step-n">1</div><span>Call <strong style="color:#ccc">+1 (215) 874-0980</strong> from your phone</span></div>
+      <div class="step"><div class="step-n">2</div><span>Tell the AI your name, address, and the problem</span></div>
+      <div class="step"><div class="step-n">3</div><span>Hang up — your job appears here within seconds</span></div>
+      <div class="step"><div class="step-n">4</div><span>Dispatch a technician and resolve the job</span></div>
+    </div>
+    <button class="modal-close" onclick="closeModal()">Close</button>
+  </div>
+</div>
+
+<script>
+const SUPABASE_URL = 'https://ampuejhdkgvjttvlkayc.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFtcHVlamhka2d2anR0dmxrYXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc4NTc2MzMsImV4cCI6MjA5MzQzMzYzM30.T4nFUlCTiapCx8kxr7sOo2zlKgKg-VlmaYNZXQNC7UU';
+
+const SEED = [
+  {
+    id: 'seed-1',
+    caller_name: 'Marcus Rivera',
+    service_address: '1847 E Passyunk Ave, Philadelphia, PA',
+    callback_phone: '215-555-0412',
+    problem_description: 'Water heater leaking — pooling in utility closet',
+    is_emergency: false,
+    status: 'dispatched',
+    created_at: new Date(Date.now() - 28 * 60000).toISOString()
+  }
+];
+
+const CREW = [
+  { name: 'Mike Rossi', role: 'HVAC Tech', initials: 'MR', status: 'busy' },
+  { name: 'Sam Okafor', role: 'Plumber', initials: 'SO', status: 'avail' },
+  { name: 'Dave Greco', role: 'Electrician', initials: 'DG', status: 'busy' },
+  { name: 'Tanya Brown', role: 'General Tech', initials: 'TB', status: 'avail' },
+  { name: 'Luis Vega', role: 'Restoration', initials: 'LV', status: 'avail' },
+];
+
+let jobs = JSON.parse(JSON.stringify(SEED));
+let logs = [];
+let filter = 'all';
+let knownIds = new Set(jobs.map(j => j.id));
+
+function ago(iso) {
+  const m = Math.floor((Date.now() - new Date(iso)) / 60000);
+  if (m < 1) return 'just now';
+  if (m < 60) return m + 'm ago';
+  return Math.floor(m / 60) + 'h ago';
+}
+
+function barClass(j) {
+  if (j.status === 'resolved') return 'resolved';
+  if (j.status === 'dispatched') return 'dispatched';
+  if (j.is_emergency) return 'emergency';
+  return 'normal';
+}
+
+function render() {
+  const list = document.getElementById('job-list');
+  const filtered = filter === 'all' ? jobs : jobs.filter(j => j.status === filter);
+  document.getElementById('job-count').textContent = filtered.length + ' job' + (filtered.length !== 1 ? 's' : '');
+  
+  if (!filtered.length) {
+    list.innerHTML = '<div class="empty">No jobs in this view</div>';
+  } else {
+    list.innerHTML = filtered.map(j => `
+      <div class="job ${j._new ? 'new-in' : ''}" id="j-${j.id}">
+        <div class="job-bar ${barClass(j)}"></div>
+        <div>
+          <div class="job-name-row">
+            <span class="job-name">${j.caller_name || 'Unknown caller'}</span>
+            ${j.is_emergency ? '<span class="tag emergency">EMERGENCY</span>' : ''}
+          </div>
+          <div class="job-addr">${j.service_address || 'Address not provided'}</div>
+          <div class="job-prob">${j.problem_description || 'No description'}</div>
+        </div>
+        <div class="job-right">
+          <div class="job-time">${ago(j.created_at)}</div>
+          <span class="tag ${j.status}">${j.status}</span>
+          <div class="job-actions">
+            ${j.status === 'new' ? `<button class="act dispatch" onclick="dispatch('${j.id}')">Dispatch</button>` : ''}
+            ${j.status === 'dispatched' ? `<button class="act resolve" onclick="resolve('${j.id}')">Resolve</button>` : ''}
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  document.getElementById('s-active').textContent = jobs.filter(j => j.status === 'new').length;
+  document.getElementById('s-emerg').textContent = jobs.filter(j => j.is_emergency && j.status !== 'resolved').length;
+  document.getElementById('s-disp').textContent = jobs.filter(j => j.status === 'dispatched').length;
+  document.getElementById('s-res').textContent = jobs.filter(j => j.status === 'resolved').length;
+}
+
+function renderLog() {
+  const el = document.getElementById('log');
+  if (!logs.length) {
+    el.innerHTML = '<div class="log-row"><span class="log-text" style="color:var(--text3)">Waiting for activity...</span></div>';
+    return;
+  }
+  el.innerHTML = logs.slice(0, 8).map(l => `
+    <div class="log-row">
+      <span class="log-time">${l.t}</span>
+      <span class="log-text">${l.text}</span>
+    </div>
+  `).join('');
+}
+
+function addLog(text) {
+  const t = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+  logs.unshift({ t, text });
+  if (logs.length > 20) logs.pop();
+  renderLog();
+}
+
+function dispatch(id) {
+  const j = jobs.find(x => x.id === id);
+  if (!j) return;
+  j.status = 'dispatched';
+  addLog(`Crew dispatched → <em>${j.caller_name || 'Unknown'}</em>`);
+  render();
+}
+
+function resolve(id) {
+  const j = jobs.find(x => x.id === id);
+  if (!j) return;
+  j.status = 'resolved';
+  addLog(`Job resolved — <em>${j.caller_name || 'Unknown'}</em>`);
+  render();
+}
+
+function setFilter(f, btn) {
+  filter = f;
+  document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+
+function resetDemo() {
+  jobs = JSON.parse(JSON.stringify(SEED));
+  knownIds = new Set(jobs.map(j => j.id));
+  logs = [];
+  addLog('Demo reset — board restored');
+  render();
+}
+
+function openModal() { document.getElementById('modal').classList.add('open'); }
+function closeModal() { document.getElementById('modal').classList.remove('open'); }
+document.getElementById('modal').addEventListener('click', e => { if (e.target === document.getElementById('modal')) closeModal(); });
+
+function copyNum() {
+  navigator.clipboard.writeText('+12158740980').catch(() => {});
+  const b = document.getElementById('copy-btn');
+  b.textContent = '✓ Copied';
+  setTimeout(() => b.textContent = 'Copy number', 2000);
+}
+
+document.getElementById('crew').innerHTML = CREW.map(c => `
+  <div class="crew-row">
+    <div class="avatar">${c.initials}</div>
+    <div>
+      <div class="crew-name">${c.name}</div>
+      <div class="crew-role">${c.role}</div>
+    </div>
+    <span class="crew-badge ${c.status === 'avail' ? 'avail' : 'busy'}">${c.status === 'avail' ? 'Available' : 'On job'}</span>
+  </div>
+`).join('');
+
+async function poll() {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/dispatch_calls?order=created_at.desc&limit=50`, {
+      headers: { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + SUPABASE_KEY }
+    });
+    if (!res.ok) return;
+    const rows = await res.json();
+    let changed = false;
+    rows.forEach(row => {
+      if (!knownIds.has(row.id) && row.caller_name) {
+        knownIds.add(row.id);
+        const j = {
+          id: row.id,
+          caller_name: row.caller_name,
+          service_address: row.service_address,
+          callback_phone: row.callback_phone,
+          problem_description: row.problem_description,
+          is_emergency: row.is_emergency === true || row.is_emergency === 'true',
+          status: row.status || 'new',
+          created_at: row.created_at,
+          _new: true
+        };
+        jobs.unshift(j);
+        addLog(`New call — <em>${j.caller_name}</em> at ${j.service_address || 'unknown address'}`);
+        if (j.is_emergency) addLog(`🚨 Emergency — <em>${j.caller_name}</em> needs priority response`);
+        changed = true;
+        setTimeout(() => { const x = jobs.find(x => x.id === j.id); if (x) x._new = false; }, 1500);
+      }
+    });
+    if (changed) render();
+  } catch (e) {}
+}
+
+setInterval(() => {
+  document.getElementById('clock').textContent = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+}, 1000);
+
+addLog('Dashboard initialized — polling for calls');
+render();
+renderLog();
+setInterval(poll, 5000);
+setInterval(render, 60000);
+</script>
+</body>
+</html>
