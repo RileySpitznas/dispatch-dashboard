@@ -356,7 +356,7 @@ function openDispatchModal(jobId) {
 
   document.getElementById('cancel-dispatch').addEventListener('click', closeDispatchModal);
 
-  document.querySelectorAll('.crew-option:not(.unavailable)').forEach(el => {
+  document.getElementById('dispatch-content').querySelectorAll('.crew-option:not(.unavailable)').forEach(el => {
     el.addEventListener('click', function() {
       showConfirmation(activeJobId, this.dataset.crewid);
     });
@@ -478,7 +478,7 @@ async function poll() {
     const rows = await res.json();
     let changed = false;
     rows.forEach(row => {
-      if (!knownIds.has(row.id) && row.caller_name) {
+      if (!knownIds.has(row.id)) {
         knownIds.add(row.id);
         const j = { id: row.id, caller_name: row.caller_name, service_address: row.service_address, callback_phone: row.callback_phone, problem_description: row.problem_description, is_emergency: row.is_emergency === true || row.is_emergency === 'true', status: row.status || 'new', created_at: row.created_at, _new: true };
         jobs.unshift(j);
