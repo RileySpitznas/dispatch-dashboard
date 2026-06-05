@@ -356,13 +356,21 @@ function openDispatchModal(jobId) {
 
   document.getElementById('cancel-dispatch').addEventListener('click', closeDispatchModal);
 
+  document.getElementById('dispatch-modal').classList.add('open');
+
   document.getElementById('dispatch-content').querySelectorAll('.crew-option:not(.unavailable)').forEach(el => {
     el.addEventListener('click', function() {
-      showConfirmation(activeJobId, this.dataset.crewid);
+      const crewId = this.dataset.crewid;
+      const crew = CREW.find(c => c.id === crewId);
+      const job = jobs.find(j => j.id === activeJobId);
+      if (crew) crew.status = 'busy';
+      if (job) { job.status = 'dispatched'; addLog((crew ? crew.name : 'Crew') + ' dispatched → ' + (job.caller_name || 'Unknown')); }
+      renderCrew();
+      render();
+      document.getElementById('dispatch-content').innerHTML = '<div style="text-align:center;padding:32px 0 24px;"><div style="font-size:36px;margin-bottom:12px;">✓</div><div style="font-size:16px;font-weight:600;color:#ddd;margin-bottom:6px;">Dispatch confirmed</div><div style="font-size:13px;color:var(--text2);">' + (crew ? crew.name : 'Technician') + ' is on the way</div></div><button class="modal-cancel" id="done-dispatch">Done</button>';
+      document.getElementById('done-dispatch').addEventListener('click', closeDispatchModal);
     });
   });
-
-  document.getElementById('dispatch-modal').classList.add('open');
 }
 
 function showConfirmation(jobId, crewId) {
