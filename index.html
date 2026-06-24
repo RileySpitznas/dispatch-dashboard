@@ -148,6 +148,9 @@ body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:14p
     <div class="tog on" id="tog" title="ON: AI answers calls. OFF: calls ring through; missed calls get an automatic text back.">
       <span class="lab">AI COVERAGE</span><span class="pill"></span><span class="state" id="togState">ON</span>
     </div>
+    <div class="tog" id="autoTog" title="ON: nearest on-shift tech is auto-assigned the moment a call lands. OFF: you dispatch manually.">
+      <span class="lab">AUTO-DISPATCH</span><span class="pill"></span><span class="state" id="autoState">OFF</span>
+    </div>
     <button class="ghost" onclick="resetDemo()">Reset</button>
   </div>
 </div>
@@ -318,7 +321,7 @@ async function poll(){
     let changed=rows.length!==leads.length;
     rows.forEach(x=>{if(!known.has(x.id)){known.add(x.id);changed=true;}});
     leads=rows;
-    if(changed)render();
+    if(changed){ render(); runAutoDispatch(); }
   }catch(e){}
 }
 
@@ -468,6 +471,31 @@ function techClockTick(){
   const now=new Date();
   el.textContent=now.toLocaleDateString('en-US',{weekday:'long'})+' · '+now.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
   if(document.getElementById('view-techs').classList.contains('show')) renderTechs();
+}
+
+// ===== AUTO-DISPATCH =====
+let autoDispatch = false;
+const autoTog = document.getElementById('autoTog');
+autoTog.addEventListener('click', ()=>{
+  autoDispatch = !autoDispatch;
+  autoTog.classList.toggle('on', autoDispatch);
+  document.getElementById('autoState').textContent = autoDispatch ? 'ON' : 'OFF';
+  if(autoDispatch) runAutoDispatch();
+});
+
+function runAutoDispatch(){
+  if(!autoDispatch) return;
+  const onShift = techs.filter(t=>effectiveStatus(t));
+  if(!onShift.length) return; // nobody on shift -> leave as new
+  leads.forEach(l=>{
+    const st = statusOverride[l.id] || l.status;
+    if(st !== 'new') return;
+    // pick nearest on-shift tech by pseudo-distance
+    const ranked = onShift.map(t=>({t, d:pseudoDist(t.id)})).sort((a,b)=>a.d-b.d);
+    const pick = ranked[0].t;
+    assignedTech[l.id] = {name:pick.name, phone:pick.phone||''};
+    setStatus(l.id, 'dispatched');
+  });
 }
 
 // ===== INIT =====
