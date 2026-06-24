@@ -359,7 +359,7 @@ function renderTechs(){
     return `<div class="techcard">
       <div class="av">${initials}</div>
       <div class="info">
-        <div class="nm2">${t.name||'Unnamed'} <button class="techedit" onclick='editTech("${t.id}")'>edit</button></div>
+        <div class="nm2">${t.name||'Unnamed'} <button class="techedit" onclick='editTech("${t.id}")'>edit</button> <button class="techedit" onclick='deleteTech("${t.id}")' style="color:var(--red)">delete</button></div>
         <div class="meta2">${t.phone||'no phone'} · ${t.address||'no address'}</div>
         <div class="sched">${fmtSched(t.schedule||{})}</div>
       </div>
@@ -382,6 +382,14 @@ function buildSchedGrid(){
     <button class="shiftbtn night" data-d="${d}" data-s="night" onclick="toggleShift(this)">Night</button>
   </div>`).join('');
 }
+function fmtPhone(el){
+  let d=el.value.replace(/\D/g,'').slice(0,10);
+  let out='';
+  if(d.length>0) out='('+d.slice(0,3);
+  if(d.length>=4) out+=') '+d.slice(3,6);
+  if(d.length>=7) out+='-'+d.slice(6,10);
+  el.value=out;
+}
 function toggleShift(btn){
   const d=btn.dataset.d, s=btn.dataset.s;
   formSchedule[d]=formSchedule[d]||[];
@@ -394,7 +402,7 @@ function techFormHTML(tech){
   return `<h3>${tech?'Edit technician':'Add technician'}</h3>
     <div class="sub" style="margin-bottom:16px;font-family:var(--mono);font-size:11px;color:var(--ink2)">Auto-active when current day &amp; time match a shift. Override anytime for days off or picked-up shifts.</div>
     <div class="fld"><label>Name</label><input id="fName" placeholder="Dave Reynolds"></div>
-    <div class="fld"><label>Phone</label><input id="fPhone" placeholder="(215) 555-0142"></div>
+    <div class="fld"><label>Phone</label><input id="fPhone" placeholder="(215) 555-0142" oninput="fmtPhone(this)"></div>
     <div class="fld"><label>Home base address</label><input id="fAddr" placeholder="1900 Frankford Ave, Philadelphia, PA"></div>
     <div class="fld"><label>Weekly schedule — tap day / night per day</label><div class="schedgrid" id="schedGrid"></div></div>
     <div class="sheet-foot">
