@@ -34,6 +34,14 @@ body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:14p
 .tog.on .pill{background:var(--teal2);border-color:var(--teal2)}
 .tog.on .pill::after{left:17px;border-color:#fff}
 .tog.on .state{color:var(--teal)}
+
+/* tabs */
+.tabs{display:flex;gap:4px;padding:0 24px;border-bottom:1px solid var(--line);background:var(--bg)}
+.tab{background:none;border:none;border-bottom:2px solid transparent;color:var(--ink2);font-family:var(--font);font-size:13px;font-weight:600;padding:12px 14px;cursor:pointer;margin-bottom:-1px}
+.tab:hover{color:var(--ink)}
+.tab.active{color:var(--teal);border-bottom-color:var(--teal2)}
+.view{display:none}.view.show{display:block}
+
 .counts{display:flex;gap:20px;padding:11px 24px;font-family:var(--mono);font-size:11.5px;color:var(--ink2);border-bottom:1px solid var(--line);background:var(--bg2)}
 .counts b{color:var(--ink);font-weight:500}
 .feed{max-width:880px;margin:0 auto;padding:8px 24px 40px}
@@ -47,6 +55,8 @@ body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:14p
 .tag.chat,.tag.form{background:var(--bluebg);color:var(--blue)}
 .addr{font-size:12px;color:var(--ink3);margin:3px 0 2px}
 .prob{font-size:13px;color:var(--ink2);line-height:1.45}
+.assigned-to{font-family:var(--mono);font-size:11px;color:var(--green);margin-top:6px;display:flex;align-items:center;gap:6px}
+.assigned-to .dot{width:6px;height:6px;border-radius:50%;background:var(--green)}
 .meta{text-align:right;flex-shrink:0}
 .when{font-family:var(--mono);font-size:10px;color:var(--ink3);margin-bottom:6px}
 .st{font-family:var(--mono);font-size:9.5px;padding:2px 7px;border-radius:4px;font-weight:500}
@@ -70,11 +80,63 @@ body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:14p
 .crew .cn{font-size:13.5px;font-weight:600}.crew .cr{font-size:11.5px;color:var(--ink3)}
 .crew .cd{margin-left:auto;font-family:var(--mono);font-size:12px;text-align:right;color:var(--ink)}
 .crew .cd small{display:block;color:var(--ink3);font-size:10px}
+.crew .nearest{font-family:var(--mono);font-size:8.5px;letter-spacing:.3px;background:var(--greenbg);color:var(--green);padding:2px 6px;border-radius:4px;margin-left:8px}
 .cancel{width:100%;background:none;border:1px solid var(--line);color:var(--ink2);border-radius:9px;padding:9px;font-size:12.5px;cursor:pointer;margin-top:6px;font-family:var(--font)}
 .cancel:hover{border-color:var(--ink3)}
 .ok{text-align:center;padding:24px 0 16px}
 .ok .big{width:46px;height:46px;border-radius:50%;background:var(--greenbg);color:var(--green);font-size:22px;line-height:46px;margin:0 auto 12px}
 .ok .t{font-weight:600;margin-bottom:4px;font-size:15px}.ok .s{font-size:12.5px;color:var(--ink2)}
+
+/* ===== TECHS ===== */
+.techwrap{max-width:880px;margin:0 auto;padding:20px 24px 50px}
+.sectit{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.sectit h2{font-size:16px;font-weight:700}
+.sectit .sub{font-family:var(--mono);font-size:11px;color:var(--ink2);margin-top:2px}
+.btn{background:var(--teal);border:none;color:#fff;border-radius:8px;padding:8px 14px;font-family:var(--font);font-size:13px;font-weight:600;cursor:pointer}
+.btn:hover{background:var(--teal2)}
+.techcard{display:flex;align-items:flex-start;gap:14px;padding:15px 16px;border:1px solid var(--line);border-radius:12px;margin-bottom:11px;background:var(--bg)}
+.techcard .av{width:40px;height:40px;border-radius:50%;background:var(--bg2);border:1px solid var(--line);display:grid;place-items:center;font-family:var(--mono);font-size:13px;color:var(--ink2);flex-shrink:0}
+.techcard .info{flex:1;min-width:0}
+.techcard .nm2{font-weight:600;font-size:14.5px}
+.techcard .meta2{font-family:var(--mono);font-size:11.5px;color:var(--ink2);margin-top:3px}
+.techcard .sched{display:flex;flex-wrap:wrap;gap:4px;margin-top:9px}
+.daychip{font-family:var(--mono);font-size:9.5px;letter-spacing:.3px;padding:3px 6px;border-radius:5px;background:var(--bg2);color:var(--ink3);border:1px solid var(--line);text-transform:uppercase}
+.daychip.day{background:var(--amberbg);color:var(--amber);border-color:transparent}
+.daychip.night{background:var(--bluebg);color:var(--blue);border-color:transparent}
+.daychip.both{background:linear-gradient(105deg,var(--amberbg) 50%,var(--bluebg) 50%);color:var(--ink);border-color:transparent}
+.statuscol{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0}
+.badge{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.4px;padding:4px 9px;border-radius:6px;text-transform:uppercase;display:flex;align-items:center;gap:5px}
+.badge .dot{width:6px;height:6px;border-radius:50%}
+.badge.active{background:var(--greenbg);color:var(--green)}
+.badge.active .dot{background:var(--green)}
+.badge.off{background:var(--bg2);color:var(--ink3)}
+.badge.off .dot{background:var(--ink3)}
+.ovr{display:flex;border:1px solid var(--line);border-radius:7px;overflow:hidden}
+.ovr button{background:var(--bg);border:none;font-family:var(--mono);font-size:10px;padding:5px 8px;cursor:pointer;color:var(--ink2);border-right:1px solid var(--line)}
+.ovr button:last-child{border-right:none}
+.ovr button.sel{background:var(--ink);color:#fff}
+.ovr button.sel.on{background:var(--green)}
+.ovr button.sel.off{background:var(--ink3)}
+.techedit{font-family:var(--mono);font-size:10px;color:var(--ink3);cursor:pointer;background:none;border:none;text-decoration:underline}
+.techedit:hover{color:var(--ink2)}
+.fld{margin-bottom:14px}
+.fld label{display:block;font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--ink2);margin-bottom:6px}
+.fld input{width:100%;border:1px solid var(--line);border-radius:9px;padding:10px 12px;font-family:var(--font);font-size:14px;color:var(--ink)}
+.fld input:focus{outline:none;border-color:var(--teal2)}
+.schedgrid{display:flex;flex-direction:column;gap:7px}
+.schedrow{display:flex;align-items:center;gap:10px}
+.schedrow .dname{font-family:var(--mono);font-size:11px;width:38px;color:var(--ink2);text-transform:uppercase}
+.shiftbtn{flex:1;border:1px solid var(--line);background:var(--bg);border-radius:7px;padding:7px;font-family:var(--mono);font-size:11px;cursor:pointer;color:var(--ink2)}
+.shiftbtn.on{border-color:transparent;font-weight:600}
+.shiftbtn.day.on{background:var(--amberbg);color:var(--amber)}
+.shiftbtn.night.on{background:var(--bluebg);color:var(--blue)}
+.sheet-foot{display:flex;gap:10px;margin-top:22px}
+.sheet-foot .btn{flex:1;text-align:center}
+.btn.ghost2{background:var(--bg2);color:var(--ink2);border:1px solid var(--line)}
+.btn.ghost2:hover{background:var(--line)}
+.btn.del{background:var(--redbg);color:var(--red);border:1px solid transparent;flex:0 0 auto}
+.btn.del:hover{background:#f5d9d7}
+.mo.wide{width:min(460px,calc(100% - 36px));max-height:90vh;overflow-y:auto}
 </style>
 </head>
 <body>
@@ -90,14 +152,32 @@ body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:14p
   </div>
 </div>
 
-<div class="counts">
-  <span>active <b id="cA">0</b></span>
-  <span>emergencies <b id="cE">0</b></span>
-  <span>dispatched <b id="cD">0</b></span>
-  <span>resolved <b id="cR">0</b></span>
+<div class="tabs">
+  <button class="tab active" data-tab="leads">Calls</button>
+  <button class="tab" data-tab="techs">Techs</button>
 </div>
 
-<div class="feed" id="feed"></div>
+<!-- ===== LEADS VIEW ===== -->
+<div class="view show" id="view-leads">
+  <div class="counts">
+    <span>active <b id="cA">0</b></span>
+    <span>emergencies <b id="cE">0</b></span>
+    <span>dispatched <b id="cD">0</b></span>
+    <span>resolved <b id="cR">0</b></span>
+  </div>
+  <div class="feed" id="feed"></div>
+</div>
+
+<!-- ===== TECHS VIEW ===== -->
+<div class="view" id="view-techs">
+  <div class="techwrap">
+    <div class="sectit">
+      <div><h2>Technicians</h2><div class="sub" id="techClock">—</div></div>
+      <button class="btn" onclick="openTechForm()">+ Add tech</button>
+    </div>
+    <div id="techList"></div>
+  </div>
+</div>
 
 <div class="mw" id="mw"><div class="mo" id="mo"></div></div>
 
@@ -106,6 +186,7 @@ const URL_ = 'https://ampuejhdkgvjttvlkayc.supabase.co';
 const KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFtcHVlamhka2d2anR0dmxrYXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc4NTc2MzMsImV4cCI6MjA5MzQzMzYzM30.T4nFUlCTiapCx8kxr7sOo2zlKgKg-VlmaYNZXQNC7UU';
 const H = { apikey: KEY, Authorization: 'Bearer ' + KEY, 'Content-Type': 'application/json' };
 
+// fallback demo crew (used only if no real techs added yet)
 const CREW = [
   {id:'c1',name:'Sam Okafor',role:'Plumber',dist:1.2,eta:4,busy:false},
   {id:'c2',name:'Tanya Brown',role:'General Tech',dist:2.7,eta:8,busy:false},
@@ -113,16 +194,27 @@ const CREW = [
   {id:'c4',name:'Mike Rossi',role:'HVAC Tech',dist:2.1,eta:6,busy:true},
 ];
 
-let tenantId = null, leads = [], known = new Set(), statusOverride = {};
+let tenantId = null, leads = [], known = new Set(), statusOverride = {}, assignedTech = {};
+const DAYS=['sun','mon','tue','wed','thu','fri','sat'];
+let techs=[], editId=null, formSchedule={};
 
 function ago(iso){const m=Math.floor((Date.now()-new Date(iso))/60000);
   return m<1?'now':m<60?m+'m':Math.floor(m/60)+'h';}
 
+// ===== tab switching =====
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===t));
+  document.querySelectorAll('.view').forEach(v=>v.classList.toggle('show',v.id==='view-'+t.dataset.tab));
+  if(t.dataset.tab==='techs') renderTechs();
+});
+
+// ===== LEADS render =====
 function render(){
   const f = document.getElementById('feed');
   if(!leads.length){ f.innerHTML = '<div class="empty">No leads yet — call the number above.</div>'; }
   else f.innerHTML = leads.map(l=>{
     const st = statusOverride[l.id] || l.status;
+    const at = assignedTech[l.id];
     return `<div class="lead">
       <div class="body">
         <div class="nm">${l.caller_name||'Unknown caller'}
@@ -130,6 +222,7 @@ function render(){
           <span class="tag ${l.channel}">${l.channel.replace('_',' ')}</span></div>
         <div class="addr">${l.service_address||(l.callback_phone||'')}</div>
         <div class="prob">${l.problem_description||''}</div>
+        ${at?`<div class="assigned-to"><span class="dot"></span>Routed to ${at.name}${at.phone?' · '+at.phone:''}</div>`:''}
       </div>
       <div class="meta">
         <div class="when">${ago(l.created_at)}</div>
@@ -153,28 +246,52 @@ async function setStatus(id,status){
   await fetch(`${URL_}/rest/v1/dispatch_leads?id=eq.${id}`,{method:'PATCH',headers:H,body:JSON.stringify({status})}).catch(()=>{});
 }
 
+// ===== DISPATCH MODAL — pulls real on-shift techs, falls back to demo CREW =====
 function openModal(id){
   const mo=document.getElementById('mo');
-  const sorted=[...CREW].sort((a,b)=>(a.busy-b.busy)||(a.dist-b.dist));
-  mo.innerHTML='<h3>Dispatch a technician</h3>'+sorted.map(c=>
+  const onShift = techs.filter(t=>effectiveStatus(t));
+  let list, useReal = onShift.length>0;
+
+  if(useReal){
+    // pseudo-distance: stable per tech so "nearest" is consistent within a session
+    list = onShift.map(t=>{
+      const d = pseudoDist(t.id);
+      return {id:t.id,name:t.name,role:t.phone||'on shift',dist:d,eta:Math.max(3,Math.round(d*3)),phone:t.phone,real:true};
+    }).sort((a,b)=>a.dist-b.dist);
+  } else {
+    list = [...CREW].sort((a,b)=>(a.busy-b.busy)||(a.dist-b.dist));
+  }
+
+  mo.innerHTML='<h3>Dispatch a technician</h3>'+list.map((c,i)=>
     `<div class="crew ${c.busy?'busy':''}" data-c="${c.id}">
-      <div><div class="cn">${c.name}</div><div class="cr">${c.role}${c.busy?' · on job':''}</div></div>
+      <div><div class="cn">${c.name}${i===0&&useReal?'<span class="nearest">NEAREST · ON SHIFT</span>':''}</div>
+      <div class="cr">${c.role}${c.busy?' · on job':''}</div></div>
       <div class="cd">${c.dist} mi<small>~${c.eta} min</small></div></div>`).join('')+
+    (useReal?'':'<div class="sub" style="text-align:center;margin:6px 0 10px;color:var(--ink3);font-family:var(--mono);font-size:10px">demo crew — add real techs in the Techs tab</div>')+
     '<button class="cancel" id="x">Cancel</button>';
   document.getElementById('x').onclick=close;
+
   mo.querySelectorAll('.crew:not(.busy)').forEach(el=>el.onclick=()=>{
-    const c=CREW.find(k=>k.id===el.dataset.c); c.busy=true;
+    const c=list.find(k=>k.id===el.dataset.c);
+    if(!c.real){const cc=CREW.find(k=>k.id===el.dataset.c); if(cc)cc.busy=true;}
+    assignedTech[id]={name:c.name,phone:c.phone||''};
     setStatus(id,'dispatched');
     mo.innerHTML=`<div class="ok"><div class="big">✓</div><div class="t">Dispatch confirmed</div>
-      <div class="s">${c.name} is on the way — ETA ~${c.eta} min</div></div>
+      <div class="s">${c.name} is on the way — ETA ~${c.eta} min<br>
+      ${c.phone?`<span style="font-family:var(--mono);font-size:11px;color:var(--ink3)">Customer info routed to ${c.phone}</span>`:''}</div></div>
       <button class="cancel" id="x2">Done</button>`;
     document.getElementById('x2').onclick=close;
   });
   document.getElementById('mw').classList.add('open');
+  document.getElementById('mo').classList.remove('wide');
 }
+// deterministic pseudo-distance from a tech id (0.4–4.8 mi)
+function pseudoDist(id){let h=0;for(let i=0;i<id.length;i++)h=(h*31+id.charCodeAt(i))>>>0;return Math.round((0.4+(h%440)/100)*10)/10;}
+
 function close(){document.getElementById('mw').classList.remove('open');}
 document.getElementById('mw').addEventListener('click',e=>{if(e.target.id==='mw')close();});
 
+// ===== COVERAGE TOGGLE =====
 const tog=document.getElementById('tog');
 tog.addEventListener('click', async ()=>{
   const on=!tog.classList.contains('on');
@@ -207,11 +324,147 @@ async function poll(){
 
 async function resetDemo(){
   await fetch(`${URL_}/rest/v1/dispatch_leads?id=gt.3`,{method:'DELETE',headers:H}).catch(()=>{});
-  statusOverride={}; CREW.forEach(c=>c.busy=c.id==='c4'); known=new Set(); leads=[];
+  statusOverride={}; assignedTech={}; CREW.forEach(c=>c.busy=c.id==='c4'); known=new Set(); leads=[];
   poll();
 }
 
-loadTenant(); poll(); setInterval(poll,5000); setInterval(render,60000);
+// ===== TECHS LOGIC =====
+function isOnShift(schedule){
+  const now=new Date(), h=now.getHours();
+  const today=DAYS[now.getDay()], yest=DAYS[(now.getDay()+6)%7];
+  if(h>=6 && h<18){ if((schedule[today]||[]).includes('day')) return true; }
+  if(h>=18){ if((schedule[today]||[]).includes('night')) return true; }
+  if(h<6){ if((schedule[yest]||[]).includes('night')) return true; }
+  return false;
+}
+function effectiveStatus(t){
+  if(t.override==='on') return true;
+  if(t.override==='off') return false;
+  return isOnShift(t.schedule||{});
+}
+function fmtSched(s){
+  return DAYS.filter(d=>s[d]&&s[d].length).map(d=>{
+    const v=s[d]; const cls=v.includes('day')&&v.includes('night')?'both':v.includes('day')?'day':'night';
+    return `<span class="daychip ${cls}">${d}</span>`;
+  }).join('') || '<span class="daychip">no shifts set</span>';
+}
+function renderTechs(){
+  const el=document.getElementById('techList');
+  if(!el) return;
+  if(!techs.length){ el.innerHTML='<div class="empty">No techs yet — add your crew to enable auto-dispatch.</div>'; return; }
+  el.innerHTML=techs.map(t=>{
+    const active=effectiveStatus(t);
+    const initials=(t.name||'?').split(' ').map(x=>x[0]).slice(0,2).join('').toUpperCase();
+    const ov=t.override||'auto';
+    return `<div class="techcard">
+      <div class="av">${initials}</div>
+      <div class="info">
+        <div class="nm2">${t.name||'Unnamed'} <button class="techedit" onclick='editTech("${t.id}")'>edit</button></div>
+        <div class="meta2">${t.phone||'no phone'} · ${t.address||'no address'}</div>
+        <div class="sched">${fmtSched(t.schedule||{})}</div>
+      </div>
+      <div class="statuscol">
+        <div class="badge ${active?'active':'off'}"><span class="dot"></span>${active?'Active':'Off'}</div>
+        <div class="ovr">
+          <button class="${ov==='auto'?'sel':''}" onclick="setOverride('${t.id}','auto')">Auto</button>
+          <button class="${ov==='on'?'sel on':''}" onclick="setOverride('${t.id}','on')">On</button>
+          <button class="${ov==='off'?'sel off':''}" onclick="setOverride('${t.id}','off')">Off</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+function buildSchedGrid(){
+  const g=document.getElementById('schedGrid');
+  g.innerHTML=DAYS.map(d=>`<div class="schedrow">
+    <span class="dname">${d}</span>
+    <button class="shiftbtn day" data-d="${d}" data-s="day" onclick="toggleShift(this)">Day</button>
+    <button class="shiftbtn night" data-d="${d}" data-s="night" onclick="toggleShift(this)">Night</button>
+  </div>`).join('');
+}
+function toggleShift(btn){
+  const d=btn.dataset.d, s=btn.dataset.s;
+  formSchedule[d]=formSchedule[d]||[];
+  const i=formSchedule[d].indexOf(s);
+  if(i>-1){formSchedule[d].splice(i,1); btn.classList.remove('on');}
+  else{formSchedule[d].push(s); btn.classList.add('on');}
+  if(!formSchedule[d].length) delete formSchedule[d];
+}
+function techFormHTML(tech){
+  return `<h3>${tech?'Edit technician':'Add technician'}</h3>
+    <div class="sub" style="margin-bottom:16px;font-family:var(--mono);font-size:11px;color:var(--ink2)">Auto-active when current day &amp; time match a shift. Override anytime for days off or picked-up shifts.</div>
+    <div class="fld"><label>Name</label><input id="fName" placeholder="Dave Reynolds"></div>
+    <div class="fld"><label>Phone</label><input id="fPhone" placeholder="(215) 555-0142"></div>
+    <div class="fld"><label>Home base address</label><input id="fAddr" placeholder="1900 Frankford Ave, Philadelphia, PA"></div>
+    <div class="fld"><label>Weekly schedule — tap day / night per day</label><div class="schedgrid" id="schedGrid"></div></div>
+    <div class="sheet-foot">
+      <button class="btn ghost2" onclick="close()">Cancel</button>
+      ${tech?`<button class="btn del" onclick="deleteTech('${tech.id}')">Delete</button>`:''}
+      <button class="btn" onclick="saveTech()">Save</button>
+    </div>`;
+}
+function openTechForm(){
+  editId=null; formSchedule={};
+  const mo=document.getElementById('mo'); mo.classList.add('wide');
+  mo.innerHTML=techFormHTML(null);
+  buildSchedGrid();
+  document.getElementById('mw').classList.add('open');
+}
+function editTech(id){
+  const t=techs.find(x=>x.id===id); if(!t)return;
+  editId=id; formSchedule=JSON.parse(JSON.stringify(t.schedule||{}));
+  const mo=document.getElementById('mo'); mo.classList.add('wide');
+  mo.innerHTML=techFormHTML(t);
+  buildSchedGrid();
+  document.getElementById('fName').value=t.name||'';
+  document.getElementById('fPhone').value=t.phone||'';
+  document.getElementById('fAddr').value=t.address||'';
+  document.querySelectorAll('.shiftbtn').forEach(b=>{
+    if((formSchedule[b.dataset.d]||[]).includes(b.dataset.s)) b.classList.add('on');
+  });
+  document.getElementById('mw').classList.add('open');
+}
+async function saveTech(){
+  const body={
+    name:document.getElementById('fName').value.trim(),
+    phone:document.getElementById('fPhone').value.trim(),
+    address:document.getElementById('fAddr').value.trim(),
+    schedule:formSchedule
+  };
+  if(!body.name){ alert('Name is required'); return; }
+  try{
+    let r;
+    if(editId) r=await fetch(`${URL_}/rest/v1/dispatch_techs?id=eq.${editId}`,{method:'PATCH',headers:H,body:JSON.stringify(body)});
+    else r=await fetch(`${URL_}/rest/v1/dispatch_techs`,{method:'POST',headers:H,body:JSON.stringify(body)});
+    if(!r.ok){ alert('Save failed: '+(await r.text())); return; }
+    close(); loadTechs();
+  }catch(e){ alert('Save error: '+e.message); }
+}
+async function deleteTech(id){
+  if(!confirm('Remove this technician?'))return;
+  await fetch(`${URL_}/rest/v1/dispatch_techs?id=eq.${id}`,{method:'DELETE',headers:H}).catch(()=>{});
+  close(); loadTechs();
+}
+async function setOverride(id,val){
+  const t=techs.find(x=>x.id===id); if(t)t.override=val; renderTechs();
+  await fetch(`${URL_}/rest/v1/dispatch_techs?id=eq.${id}`,{method:'PATCH',headers:H,body:JSON.stringify({override:val})}).catch(()=>{});
+}
+async function loadTechs(){
+  try{
+    const r=await fetch(`${URL_}/rest/v1/dispatch_techs?order=created_at.asc`,{headers:H});
+    if(r.ok){ techs=await r.json(); renderTechs(); }
+  }catch(e){}
+}
+function techClockTick(){
+  const el=document.getElementById('techClock'); if(!el)return;
+  const now=new Date();
+  el.textContent=now.toLocaleDateString('en-US',{weekday:'long'})+' · '+now.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
+  if(document.getElementById('view-techs').classList.contains('show')) renderTechs();
+}
+
+// ===== INIT =====
+loadTenant(); poll(); loadTechs(); techClockTick();
+setInterval(poll,5000); setInterval(render,60000); setInterval(techClockTick,30000);
 </script>
 </body>
 </html>
