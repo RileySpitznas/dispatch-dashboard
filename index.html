@@ -57,6 +57,18 @@ body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:14p
 .prob{font-size:13px;color:var(--ink2);line-height:1.45}
 .assigned-to{font-family:var(--mono);font-size:11px;color:var(--green);margin-top:6px;display:flex;align-items:center;gap:6px}
 .assigned-to .dot{width:6px;height:6px;border-radius:50%;background:var(--green)}
+.leadmap{margin-top:10px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--bg2)}
+.leadmap .lm-head{display:flex;align-items:center;justify-content:space-between;padding:7px 11px;background:#fff;border-bottom:1px solid var(--line)}
+.leadmap .lm-ttl{font-family:var(--mono);font-size:9.5px;letter-spacing:.4px;text-transform:uppercase;color:var(--ink2);display:flex;align-items:center;gap:6px}
+.leadmap .lm-ttl .lv{width:5px;height:5px;border-radius:50%;background:var(--teal2);animation:lmblink 1.4s infinite}
+@keyframes lmblink{0%,100%{opacity:1}50%{opacity:.25}}
+.leadmap .lm-eta{font-family:var(--mono);font-size:10.5px;color:var(--ink)}
+.leadmap .lm-eta b{color:var(--green)}
+.leadmap .lm-body{position:relative;height:150px}
+.leadmap .lm-body svg{position:absolute;inset:0;width:100%;height:100%}
+.routeline{stroke-dasharray:300;stroke-dashoffset:300;animation:draw 1s ease forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+
 .meta{text-align:right;flex-shrink:0}
 .when{font-family:var(--mono);font-size:10px;color:var(--ink3);margin-bottom:6px}
 .st{font-family:var(--mono);font-size:9.5px;padding:2px 7px;border-radius:4px;font-weight:500}
@@ -212,6 +224,35 @@ document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
 });
 
 // ===== LEADS render =====
+// build the inline dispatch map for a dispatched lead
+function leadMapHTML(l,at){
+  // deterministic job + tech positions from ids so it's stable across re-renders
+  const jx=380+(hashNum(String(l.id))%80), jy=55+(hashNum(String(l.id)+'y')%50);
+  const tx=120+(hashNum(at.name)%120), ty=80+(hashNum(at.name+'y')%50);
+  const eta=Math.max(4,Math.round((pseudoDist(at.name))*3));
+  const midX=(tx+jx)/2, midY=Math.min(ty,jy)-26;
+  return `<div class="leadmap">
+    <div class="lm-head">
+      <div class="lm-ttl"><span class="lv"></span>Dispatched · ${at.name}</div>
+      <div class="lm-eta">ETA <b>~${eta} min</b></div>
+    </div>
+    <div class="lm-body"><svg viewBox="0 0 480 150" preserveAspectRatio="xMidYMid slice">
+      <g stroke="#D6E6E4" stroke-width="1.5">
+        <line x1="0" y1="40" x2="480" y2="38"/><line x1="0" y1="80" x2="480" y2="82"/><line x1="0" y1="118" x2="480" y2="116"/>
+        <line x1="90" y1="0" x2="95" y2="150"/><line x1="200" y1="0" x2="198" y2="150"/><line x1="320" y1="0" x2="324" y2="150"/>
+      </g>
+      <g fill="#EAF6F5" opacity="0.6"><rect x="100" y="44" width="55" height="32" rx="3"/><rect x="240" y="86" width="60" height="28" rx="3"/></g>
+      <path class="routeline" d="M ${tx} ${ty} Q ${midX} ${midY} ${jx} ${jy}" fill="none" stroke="#0E7C7B" stroke-width="2.5"/>
+      <circle cx="${jx}" cy="${jy}" r="7" fill="#C2453F"/>
+      <circle cx="${jx}" cy="${jy}" r="7" fill="none" stroke="#C2453F" stroke-width="2" opacity="0.5"><animate attributeName="r" from="7" to="17" dur="1.6s" repeatCount="indefinite"/><animate attributeName="opacity" from="0.5" to="0" dur="1.6s" repeatCount="indefinite"/></circle>
+      <text x="${jx}" y="${jy-12}" font-size="9" fill="#C2453F" text-anchor="middle" font-family="DM Mono" font-weight="500">JOB</text>
+      <rect x="${tx-7}" y="${ty-7}" width="14" height="14" rx="4" fill="#0E7C7B"/>
+      <text x="${tx}" y="${ty+19}" font-size="9" fill="#0A2E36" text-anchor="middle" font-family="DM Mono" font-weight="600">${at.name}</text>
+    </svg></div>
+  </div>`;
+}
+function hashNum(s){let h=0;for(let i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))>>>0;return h;}
+
 function render(){
   const f = document.getElementById('feed');
   if(!leads.length){ f.innerHTML = '<div class="empty">No leads yet — call the number above.</div>'; }
@@ -225,7 +266,7 @@ function render(){
           <span class="tag ${l.channel}">${l.channel.replace('_',' ')}</span></div>
         <div class="addr">${l.service_address||(l.callback_phone||'')}</div>
         <div class="prob">${l.problem_description||''}</div>
-        ${at?`<div class="assigned-to"><span class="dot"></span>Routed to ${at.name}${at.phone?' · '+at.phone:''}</div>`:''}
+        ${at?leadMapHTML(l,at):''}
       </div>
       <div class="meta">
         <div class="when">${ago(l.created_at)}</div>
